@@ -1,0 +1,51 @@
+==============================================================================
+                                                               *firvish-history*
+
+Opinionated re-implementations of |:oldfiles| and |:jumps|, which are
+local to the current workspace.
+
+                                                                  *:Oldfiles[!]*
+Like |:oldfiles| but filters |v:oldfiles| to only show you old files in
+the current workspace.
+
+By default, :Oldfiles opens a quickfix list with the filtered old files,
+while :Oldfiles! opens a plain |firvish-buffer|.
+
+See |firvish-history-config| for configuration options.
+
+                                                                     *:Jumps[!]*
+Like |:jumps| but filters |getjumplist()| to only show you jumps that took
+place in/between files within the current workspace.
+
+By default, :Jumps opens a quickfix list with the filtered old files,
+while :Jumps! opens a plain |firvish-buffer|.
+
+See |firvish-history-config| for configuration options.
+
+                                                        *firvish-history-config*
+Default configuration:
+>
+{
+  ---Commands open a quickfix list unless <bang> is given, in which case
+  ---they open a plain |firvish-buffer|. This setting, when `true`,
+  ---inverts that behavior.
+  invert = false,
+  ---How to open the |firvish-buffer|
+  open = function(filename)
+    vim.cmd.edit(filename)
+  end,
+  ---Keymaps to set in the |firvish-buffer|
+  keymaps = {
+    n = {},
+  },
+}
+<
+
+M.setup()                                                *firvish-history.setup*
+    Configure the plugin
+
+    See: ~
+        |firvish-history-config|
+
+
+vim:tw=78:ts=8:noet:ft=help:norl:
